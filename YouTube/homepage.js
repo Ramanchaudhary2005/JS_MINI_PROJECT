@@ -8485,3 +8485,29 @@ const showTrendingVideos = () =>{
 };
 
 showTrendingVideos();
+
+ 
+
+const  handleSuggestion=(e)=>{
+    const searchtext = e.target.value;
+    // console.log(value);
+    const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchtext}&hl=en&gl=US`,{
+        method: "GET",
+        headers:{
+            "x-rapidapi-host":"youtube138.p.rapidapi.com",
+            "x-rapidapi-key":"6c128dff43msha80942be91022bap101cc3jsn508cc8d30ac6"
+        }
+    });
+
+    request
+        .then((response)=>{
+            const pr2 = response.json();
+            pr2.then((data)=>{
+                console.log(data);
+            });
+        })
+        .catch((err)=>{
+            alert("Suggestion Error:", err.message);
+        });
+
+};
