@@ -18,6 +18,43 @@
 
 // getTrendingVideos();
 
+const getSuggestionApi=(searchtext)=>{
+    console.log("API CALLED",searchtext);
+    // const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchtext}&hl=en&gl=US`,{
+    //     method: "GET",
+    //     headers:{
+    //         "x-rapidapi-host":"youtube138.p.rapidapi.com",
+    //         "x-rapidapi-key":"6c128dff43msha80942be91022bap101cc3jsn508cc8d30ac6"
+    //     }
+    // });
+
+    // request
+    //     .then((response)=>{
+    //         const pr2 = response.json();
+    //         pr2.then((data)=>{
+                // renderSuggestionList(data);
+    renderSuggestionList();            
+    //         });
+    //     })
+    //     .catch((err)=>{
+    //         alert("Suggestion Error:", err.message);
+    //     });
+    
+        
+}
+
+let id = null;
+
+const getSmartSuggestionApi = (txt)=>{
+    clearTimeout(id);
+
+    id = setTimeout(()=>{
+        getSuggestionApi(txt);
+    }, 1000);
+
+    
+}
+
 const data = { 
     status: "success",
     "list": [
@@ -8449,8 +8486,8 @@ const data = {
 };
 
 const rootElem = document.getElementById('root');
-
-
+const searchSuggestionContainerElement = document.getElementById("search-suggestion-container");
+const searchinput = document.getElementById("search-input");
 const showTrendingVideos = () =>{
     const {list} = data;
     list.forEach((video)=>{
@@ -8491,23 +8528,39 @@ showTrendingVideos();
 const  handleSuggestion=(e)=>{
     const searchtext = e.target.value;
     // console.log(value);
-    const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchtext}&hl=en&gl=US`,{
-        method: "GET",
-        headers:{
-            "x-rapidapi-host":"youtube138.p.rapidapi.com",
-            "x-rapidapi-key":"6c128dff43msha80942be91022bap101cc3jsn508cc8d30ac6"
-        }
-    });
+    
+    getSmartSuggestionApi(searchtext);
+};
 
-    request
-        .then((response)=>{
-            const pr2 = response.json();
-            pr2.then((data)=>{
-                console.log(data);
-            });
+
+const renderSuggestionList = (obj) =>{
+    const dummyObj = {
+        "query": "power",
+        "results": [
+            "power rangers",
+            "power",
+            "powerpuff girls",
+            "power kevin gates",
+            "power trip j cole",
+            "power slap",
+            "power kanye west",
+            "power of a haircut",
+            "power rangers dino charge",
+            "power rangers theme song",
+            "power of love",
+            "power trip",
+            "power rangers samurai",
+            "power young thug"
+        ]
+    };
+
+    const {results} = dummyObj;
+    results.forEach((result)=>{
+        const newText = document.createElement('p');
+        newText.innerText = result;
+        searchSuggestionContainerElement.appendChild(newText);
+        newText.addEventListener('click',()=>{
+
         })
-        .catch((err)=>{
-            alert("Suggestion Error:", err.message);
-        });
-
+    })
 };

@@ -98,4 +98,27 @@ header{
         border-top-right-radius: 0.75rem;
         border-bottom-right-radius: 0.75rem;
     }
+    #search-suggestion-container{
+        position: absolute;
+        background-color: rgb(249, 253, 253);
+        /* width:  */
+        top: 80px;
+        right: 770px;
+
+        display: flex;
+        flex-direction: column;
+        /* padding: 0.25rem;
+        gap:0.25rem; */
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+    }
+    #search-suggestion-container p{
+        cursor: pointer;
+        border-bottom: 1px solid lightgrey;
+    }
+
+    #search-suggestion-container p:hover{
+        background-color: aliceblue;
+
+    }
 }
