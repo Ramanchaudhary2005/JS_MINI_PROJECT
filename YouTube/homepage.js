@@ -8573,5 +8573,5 @@ const renderSuggestionList = (obj) =>{
 
 const handleSearch=()=>{
     const val = searchinputElem.value;
-    window.open(`./search_page.html?searchText=${val}`,"_self")
+    window.open(`./search/index.html?searchText=${val}`,"_self")
 }
