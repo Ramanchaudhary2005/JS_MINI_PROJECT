@@ -32,8 +32,8 @@ const getSuggestionApi=(searchtext)=>{
     //     .then((response)=>{
     //         const pr2 = response.json();
     //         pr2.then((data)=>{
-                // renderSuggestionList(data);
-    renderSuggestionList();            
+    //             renderSuggestionList(data);
+               
     //         });
     //     })
     //     .catch((err)=>{
@@ -8487,7 +8487,9 @@ const data = {
 
 const rootElem = document.getElementById('root');
 const searchSuggestionContainerElement = document.getElementById("search-suggestion-container");
-const searchinput = document.getElementById("search-input");
+const searchinputElem = document.getElementById("search-input");
+
+
 const showTrendingVideos = () =>{
     const {list} = data;
     list.forEach((video)=>{
@@ -8534,33 +8536,42 @@ const  handleSuggestion=(e)=>{
 
 
 const renderSuggestionList = (obj) =>{
-    const dummyObj = {
-        "query": "power",
-        "results": [
-            "power rangers",
-            "power",
-            "powerpuff girls",
-            "power kevin gates",
-            "power trip j cole",
-            "power slap",
-            "power kanye west",
-            "power of a haircut",
-            "power rangers dino charge",
-            "power rangers theme song",
-            "power of love",
-            "power trip",
-            "power rangers samurai",
-            "power young thug"
-        ]
-    };
+    // const dummyObj = {
+    //     "query": "power",
+    //     "results": [
+    //         "power rangers",
+    //         "power",
+    //         "powerpuff girls",
+    //         "power kevin gates",
+    //         "power trip j cole",
+    //         "power slap",
+    //         "power kanye west",
+    //         "power of a haircut",
+    //         "power rangers dino charge",
+    //         "power rangers theme song",
+    //         "power of love",
+    //         "power trip",
+    //         "power rangers samurai",
+    //         "power young thug"
+    //     ]
+    // };
+    searchSuggestionContainerElement.innerHTML = "";
 
-    const {results} = dummyObj;
-    results.forEach((result)=>{
+    const {results} = obj;
+    results.slice(0,20).forEach((result)=>{
         const newText = document.createElement('p');
         newText.innerText = result;
+        
+        newText.addEventListener('click',(e)=>{
+            searchinputElem.value = e.target.innerText;
+            searchSuggestionContainerElement.innerHTML = "";
+        });
         searchSuggestionContainerElement.appendChild(newText);
-        newText.addEventListener('click',()=>{
-
-        })
-    })
+    });
 };
+
+
+const handleSearch=()=>{
+    const val = searchinputElem.value;
+    window.open(`./search_page.html?searchText=${val}`,"_self")
+}

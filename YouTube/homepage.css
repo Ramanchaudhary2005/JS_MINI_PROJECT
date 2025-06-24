@@ -84,6 +84,8 @@ header{
     .search-container{
         display: flex;
         width: 50%;
+        position: relative;
+        /* height: 500px; */
     }
     .search-container input{
         flex-grow: 1;
@@ -97,13 +99,14 @@ header{
         padding: 0.7rem 1.25rem;
         border-top-right-radius: 0.75rem;
         border-bottom-right-radius: 0.75rem;
+        cursor: pointer;
     }
     #search-suggestion-container{
         position: absolute;
         background-color: rgb(249, 253, 253);
-        /* width:  */
-        top: 80px;
-        right: 770px;
+        width: 80%;
+        top: 3rem;
+        left: 0.75rem;
 
         display: flex;
         flex-direction: column;
@@ -111,6 +114,8 @@ header{
         gap:0.25rem; */
         border-bottom-left-radius: 0.75rem;
         border-bottom-right-radius: 0.75rem;
+        /* height: 250px; */
+        padding-left: 10px;
     }
     #search-suggestion-container p{
         cursor: pointer;
@@ -121,4 +126,6 @@ header{
         background-color: aliceblue;
 
     }
+
+    
 }
