@@ -7,7 +7,8 @@ const iframemele = document.getElementsByTagName('iframe')[0];
 
 iframemele.setAttribute('src',`https://www.youtube.com/embed/${videoId}`);
 
-const val = window.localStorage.getItem("history") ?? [];
+const val = window.localStorage.getItem("history") ?? "[]";
+console.log(val);
 const arr = JSON.parse(val);
 arr.push(videoId);
 
