@@ -20,25 +20,25 @@
 
 const getSuggestionApi=(searchtext)=>{
     console.log("API CALLED",searchtext);
-    // const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchtext}&hl=en&gl=US`,{
-    //     method: "GET",
-    //     headers:{
-    //         "x-rapidapi-host":"youtube138.p.rapidapi.com",
-    //         "x-rapidapi-key":"6c128dff43msha80942be91022bap101cc3jsn508cc8d30ac6"
-    //     }
-    // });
+    const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchtext}&hl=en&gl=US`,{
+        method: "GET",
+        headers:{
+            "x-rapidapi-host":"youtube138.p.rapidapi.com",
+            "x-rapidapi-key":"6c128dff43msha80942be91022bap101cc3jsn508cc8d30ac6"
+        }
+    });
 
-    // request
-    //     .then((response)=>{
-    //         const pr2 = response.json();
-    //         pr2.then((data)=>{
-    //             renderSuggestionList(data);
+    request
+        .then((response)=>{
+            const pr2 = response.json();
+            pr2.then((data)=>{
+                renderSuggestionList(data);
                
-    //         });
-    //     })
-    //     .catch((err)=>{
-    //         alert("Suggestion Error:", err.message);
-    //     });
+            });
+        })
+        .catch((err)=>{
+            alert("Suggestion Error:", err.message);
+        });
     
         
 }
@@ -8493,7 +8493,7 @@ const searchinputElem = document.getElementById("search-input");
 const showTrendingVideos = () =>{
     const {list} = data;
     list.forEach((video)=>{
-        const {author,  title, publishedText, viewCountText, authorThumbnails, videoThumbnails} = video
+        const {author,  title, publishedText, viewCountText, authorThumbnails, videoThumbnails, videoId} = video
         const newDiv = document.createElement("div");
         newDiv.className = "video-card"
         newDiv.innerHTML = `
@@ -8519,6 +8519,9 @@ const showTrendingVideos = () =>{
             
             
         `;
+        newDiv.addEventListener('click',()=>{
+            window.open(`../view/index.html?videoId=${videoId}`,"_self")
+        })
         rootElem.appendChild(newDiv)
     })
 };
