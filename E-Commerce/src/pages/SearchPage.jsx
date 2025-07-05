@@ -23,7 +23,7 @@ const SearchPage=()=>{
     return(
         <>
             <Navbar />
-            <main>
+            <main className="bg-gray-200 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {products.map((elem)=>{
                     return <ProductCard key = {elem.id}{...elem}/>;
                 })}
