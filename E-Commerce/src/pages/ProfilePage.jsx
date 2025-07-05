@@ -2,16 +2,16 @@ import {Footer} from "../components/Footer";
 import {Navbar} from "../components/Navbar";
 
 
-const ViewPage=()=>{
+const ProfilePage=()=>{
     return(
         <>
             <Navbar />
             <main>
-                <p>View Page</p>
+                <p>Profile Page</p>
             </main>
             <Footer />
         </>
     );
 };
 
-export {ViewPage};
+export {ProfilePage};

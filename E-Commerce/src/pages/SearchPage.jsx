@@ -2,16 +2,16 @@ import {Footer} from "../components/Footer";
 import {Navbar} from "../components/Navbar";
 
 
-const ViewPage=()=>{
+const SearchPage=()=>{
     return(
         <>
             <Navbar />
             <main>
-                <p>View Page</p>
+                <p>Search Page</p>
             </main>
             <Footer />
         </>
     );
 };
 
-export {ViewPage};
+export {SearchPage};

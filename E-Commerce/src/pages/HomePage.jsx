@@ -1,3 +1,6 @@
+import { Footer } from "../components/Footer"
+import { Navbar } from "../components/Navbar"
+
 const HomePage = ()=>{
     return(
         <>
@@ -7,3 +10,5 @@ const HomePage = ()=>{
         </>
     )
 }
+
+export { HomePage };
