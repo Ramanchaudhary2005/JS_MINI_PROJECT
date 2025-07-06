@@ -1,5 +1,7 @@
 import {useNavigate, useSearchParams} from "react-router";
 import {useState} from "react";
+import { Link } from 'react-router-dom';
+
 
 
 const Navbar = ()=>{
@@ -13,7 +15,7 @@ const Navbar = ()=>{
 
     return (
         <nav className="flex px-4 py-4 justify-between items-center bg-gray-900">
-            <p className="text-white">My App</p>
+            <Link to="/" className="text-white">My App</Link>
 
             <div className="flex">
                 <input

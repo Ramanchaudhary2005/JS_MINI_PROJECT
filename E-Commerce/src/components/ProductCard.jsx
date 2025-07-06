@@ -1,9 +1,14 @@
-const ProductCard = (props) => {
-  const { title, price, thumbnail } = props;
+import {useNavigate} from "react-router"
 
+const ProductCard = (props) => {
+  const { title, price, thumbnail, id } = props;
+  const navigate = useNavigate();
+  const handleViewProduct = ()=>{
+    navigate(`/${id}/view`);
+  }
   return (
     <div className="border border-gray-300 rounded-xl p-4 bg-white shadow-md hover:shadow-2xl shadow-gray-400 transition duration-300 flex flex-col items-center
-        cursor-pointer">
+        cursor-pointer" onClick={handleViewProduct}>
       <img
         src={thumbnail}
         alt="product"
