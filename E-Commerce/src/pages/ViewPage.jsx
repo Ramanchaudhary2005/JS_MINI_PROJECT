@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {Footer} from "../components/Footer";
 import {Navbar} from "../components/Navbar";
 import { useParams } from "react-router";
+import {Atom} from "react-loading-indicators";
 
 const ViewPage=()=>{
     const params = useParams();
@@ -19,7 +20,7 @@ const ViewPage=()=>{
             alert(`Error getting product info: ${err.message}`);
         }
         finally{
-            setLoading(false);
+            setTimeout(()=>setLoading(false),800);
         }
     };
 
@@ -32,7 +33,7 @@ const ViewPage=()=>{
             <Navbar />
             <main>
                 {
-                    loading?<div className="h-25 flex items-center justify-center"><p>Loading...</p></div>:
+                    loading?<div className="h-25 flex items-center justify-center"><Atom color="#101828" size="medium" text="" textColor="" /></div>:
                 <>
                 <h1>{product.title}</h1>
                 <div className="flex flex-wrap gap-8 items-center justify-center py-4">
