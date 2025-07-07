@@ -4,18 +4,24 @@ import { Navbar } from "../components/Navbar";
 import { useSearchParams } from "react-router";
 import { ProductCard } from "../components/ProductCard";
 
+const LIMIT = 12;
+
 const SearchPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const searchText = searchParams.get("text");
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(1);
 
     const getSearchResults = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`https://dummyjson.com/products/search?q=${searchText}`);
+            const SKIP = LIMIT*(page-1);
+            const response = await fetch(`https://dummyjson.com/products/search?q=${searchText}&limit=${LIMIT}&skip=${SKIP}`);
             const data = await response.json();
             setProducts(data.products);
+            setTotalItems(data.total);
         } catch (err) {
             alert(`Can't get search results: ${err.message}`);
         } finally {
@@ -25,9 +31,11 @@ const SearchPage = () => {
 
     useEffect(() => {
         getSearchResults();
-    }, [searchText]);
+    }, [searchText, page]);
 
-    const dummyArray = Array(8).fill(null); // You can adjust the count
+    const dummyArray = Array(8).fill(null); 
+    const totalPages = Math.ceil(totalItems/LIMIT);
+    const dummyArrayForPage = Array(totalPages).fill(null);
 
     return (
         <>
@@ -50,7 +58,19 @@ const SearchPage = () => {
                     : products.map((elem) => (
                         <ProductCard key={elem.id} {...elem} />
                     ))}
+                    
             </main>
+            <div className="flex flex-wrap gap-5 items-center justify-center">
+                {
+                    dummyArrayForPage.map((elem, idx)=>{
+                        return(
+                            <button className="py-2 px-4 my-2 rounded-md bg-gray-300 cursor-pointer" onClick={()=>setPage(idx+1)}>{idx+1}</button>
+                            
+                        )
+                    })
+                }
+                
+            </div>
             <Footer />
         </>
     );
